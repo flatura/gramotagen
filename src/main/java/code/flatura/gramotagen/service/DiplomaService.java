@@ -5,6 +5,7 @@ import code.flatura.gramotagen.repository.DiplomaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,13 @@ public class DiplomaService {
         return diplomaRepository.findAll()
                 .stream()
                 .map(d -> new DiplomaDto(d.getType(), d.getPlace(), d.getPersonName(), d.getPersonSurname(), d.getCompetitionTitle(), d.getCompetitionDate()))
+                .collect(Collectors.toList());
+    }
+
+    public List<DiplomaDto> findByPersonalInfo(String name, String middleName, String surname, LocalDate birthDate) {
+        return diplomaRepository.findAllByPersonNameAndPersonMiddleNameAndPersonSurnameAndPersonBirthDate(name, middleName, surname, birthDate)
+                .stream()
+                .map(d -> new DiplomaDto(d.getType(), d.getPlace(), d.getPersonName(), d.getPersonSurname(),d.getCompetitionTitle(),d.getCompetitionDate()))
                 .collect(Collectors.toList());
     }
 }

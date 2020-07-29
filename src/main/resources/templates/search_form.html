@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Gramotagen: find my diplomas</title>
+</head>
+<body>
+<h1>Find my diploma</h1>
+<div>
+    <form action="#" method="post">
+        <div>Name</div>
+        <div>
+            <input type="text" name="name" th:name="name"/>
+        </div>
+        <div>Middle name</div>
+        <div>
+            <input type="text" name="middlename" th:name="middlename"/>
+        </div>
+        <div>Surname</div>
+        <div>
+            <input type="text" name="surname" th:name="surname"/>
+        </div>
+        <div>Дата рождения в формате yyyy-mm-dd</div>
+        <div>
+            <input type="text" name="count" th:name="birthdate"/>
+        </div>
+        <input type="submit" value="Find my diploma"></form>
+    </form>
+</div>
+</body>
+</html>
