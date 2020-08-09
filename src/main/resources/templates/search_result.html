@@ -26,7 +26,7 @@
             <td th:text="${entry.competitionDate}"></td>
             <td>
                 <a href="/my"
-                   th:href="@{/my(id=${entry.id})}">Download</a>
+                   th:href="@{/my(id=${entry.id},name=${entry.getPersonName()},surname=${entry.getPersonSurname()})}">Download</a>
             </td>
         </tr>
         </tbody>

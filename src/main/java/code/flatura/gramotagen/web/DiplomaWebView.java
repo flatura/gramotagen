@@ -4,7 +4,6 @@ import code.flatura.gramotagen.model.Dto.DiplomaDto;
 import code.flatura.gramotagen.service.DiplomaService;
 import code.flatura.gramotagen.util.PDFService;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller("/")
 public class DiplomaWebView {
@@ -58,35 +58,24 @@ public class DiplomaWebView {
     }
 
     @GetMapping("/my")
-    //@GetMapping("/my/{id}")
-    /*
-    public void getDiploma(HttpServletResponse response,
-                           @RequestParam(name = "name") String name,
-                           @RequestParam(name = "middlename") String middleName,
+    public void getDiploma(HttpServletResponse response, @RequestParam(name = "name") String name,
                            @RequestParam(name = "surname") String surName,
-                           @RequestParam(name = "birthdate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthDate,
-                           @RequestParam(name = "id") Integer id,
-                           Map<String, Object> model)
-    {
-        */
-    //public void getDiploma(HttpServletResponse response, @PathVariable("id") Integer id) {
-    public void getDiploma(HttpServletResponse response, @RequestParam("id") Integer id) {
-        //Integer id = 100003;
-        //id = 100000;
-        // Достаем нужный DTO
+                           @RequestParam("id") UUID id) {
         DiplomaDto diplomaDto = diplomaService.getById(id);
-
-        // Проверяем информацию в нем
-        //if (diplomaDto.getPersonName().equalsIgnoreCase(name) &&
-        //diplomaDto.getPersonSurname().equalsIgnoreCase(surName)) {
-        try {
-            PDFService.generate(diplomaDto, response.getOutputStream());
-            response.setContentType("application/pdf");
-            String header = diplomaDto.getType() + " " + diplomaDto.getPersonName() + " " + diplomaDto.getPersonSurname();
-            response.setHeader(header, header);
-            response.flushBuffer();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (diplomaDto != null) {
+            // Проверяем информацию в нем
+            if (diplomaDto.getPersonName().equalsIgnoreCase(name) &&
+                    diplomaDto.getPersonSurname().equalsIgnoreCase(surName)) {
+                try {
+                    PDFService.generate(diplomaDto, response.getOutputStream());
+                    response.setContentType("application/pdf");
+                    String header = diplomaDto.getType() + " " + diplomaDto.getPersonName() + " " + diplomaDto.getPersonSurname();
+                    response.setHeader(header, header);
+                    response.flushBuffer();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

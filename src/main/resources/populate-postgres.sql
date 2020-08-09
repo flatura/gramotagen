@@ -5,9 +5,10 @@ DROP SEQUENCE IF EXISTS users_seq;
 DROP SEQUENCE IF EXISTS users_roles_seq;
 DROP SEQUENCE IF EXISTS diploma_seq;
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE SEQUENCE users_seq START WITH 100000;
 CREATE SEQUENCE users_roles_seq START WITH 100000;
-CREATE SEQUENCE diploma_seq START WITH 100000;
 
 CREATE TABLE users
 (
@@ -30,7 +31,7 @@ CREATE TABLE users_roles
 );
 
 CREATE TABLE diploma (
-  id                  INTEGER PRIMARY KEY DEFAULT nextval('diploma_seq'),
+  id                  uuid                    DEFAULT uuid_generate_v4 (),
   serial              varchar(8)              ,
   number              INTEGER                 ,
   type                varchar(15)             NOT NULL,
@@ -54,7 +55,6 @@ CREATE TABLE diploma (
 
 ALTER SEQUENCE users_seq RESTART WITH 100000;
 ALTER SEQUENCE users_roles_seq RESTART WITH 100000;
-ALTER SEQUENCE diploma_seq RESTART WITH 100000;
 
 INSERT INTO users (name, email, password) VALUES
 ('user', 'user1@yandex.ru', '$2a$10$23.P3eLizBkROvHC.IdsNezdusKHow7Uhrhaa0ceVC5degwI2DdXO'), --100000 password

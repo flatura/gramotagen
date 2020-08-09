@@ -1,9 +1,10 @@
 package code.flatura.gramotagen.model.Dto;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class DiplomaDto {
-    private final Integer id;
+    private final UUID id;
     private final String type;
     private final String place;
     private final String personName;
@@ -11,7 +12,7 @@ public class DiplomaDto {
     private final String competitionTitle;
     private LocalDate competitionDate;
 
-    public DiplomaDto(Integer id, String type, String place, String personName, String personSurname, String competitionTitle, LocalDate competitionDate) {
+    public DiplomaDto(UUID id, String type, String place, String personName, String personSurname, String competitionTitle, LocalDate competitionDate) {
         this.id = id;
         this.type = type;
         this.place = place;
@@ -21,7 +22,7 @@ public class DiplomaDto {
         this.competitionDate = competitionDate;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 

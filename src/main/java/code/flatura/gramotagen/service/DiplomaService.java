@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,9 +38,12 @@ public class DiplomaService {
                 .collect(Collectors.toList());
     }
 
-    public DiplomaDto getById(Integer id) {
-        // TODO Нормально обработать Optional
-        Diploma result = diplomaRepository.findById(id).get();
-        return new DiplomaDto(result.getId(), result.getType(), result.getPlace(), result.getPersonName(), result.getPersonSurname(), result.getCompetitionTitle(), result.getCompetitionDate());
+    public DiplomaDto getById(UUID id) {
+        Optional<Diploma> optional = diplomaRepository.findById(id);
+        if(optional.isPresent()) {
+                final Diploma d = optional.get();
+                return new DiplomaDto(d.getId(), d.getType(), d.getPlace(), d.getPersonName(), d.getPersonSurname(), d.getCompetitionTitle(), d.getCompetitionDate());
+        }
+        return null;
     }
 }
