@@ -11,7 +11,7 @@ public class Diploma {
     @Id
     @SequenceGenerator(name = "diploma_seq", sequenceName = "diploma_seq", allocationSize = 1, initialValue = 100000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diploma_seq")
-    private long id;
+    private Integer id;
 
     @Column(name = "serial")
     private String serial;
@@ -93,7 +93,7 @@ public class Diploma {
         this.place = place;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 

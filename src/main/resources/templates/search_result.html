@@ -6,7 +6,7 @@
     <title>Gramotagen: find my diplomas</title>
 </head>
 <body>
-<h1 th:text="${name + ' ' + middle_name + ', there is your diploma:'}"></h1>
+<h1 th:text="${name+' '+middle_name+', there is your diploma:'}"></h1>
 <div>
     <table>
         <thead>
@@ -15,6 +15,7 @@
             <th>Place</th>
             <th>Competition</th>
             <th>Date</th>
+            <th>Print</th>
         </tr>
         </thead>
         <tbody>
@@ -23,6 +24,10 @@
             <td th:text="${entry.place}"></td>
             <td th:text="${entry.competitionTitle}"></td>
             <td th:text="${entry.competitionDate}"></td>
+            <td>
+                <a href="/my"
+                   th:href="@{/my(id=${entry.id})}">Download</a>
+            </td>
         </tr>
         </tbody>
     </table>
