@@ -5,6 +5,7 @@ import code.flatura.gramotagen.model.Dto.DiplomaDto;
 import code.flatura.gramotagen.repository.DiplomaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -45,5 +46,11 @@ public class DiplomaService {
                 return new DiplomaDto(d.getId(), d.getType(), d.getPlace(), d.getPersonName(), d.getPersonSurname(), d.getCompetitionTitle(), d.getCompetitionDate());
         }
         return null;
+    }
+
+    @Transactional
+    public void incrementPrintCounter(UUID id) {
+        // Ищем запись в БД, если существует, то запускаем инкремент счетчика и сохраняем
+        diplomaRepository.findById(id).ifPresent(d -> diplomaRepository.save(d.incrementPrintedCount()));
     }
 }

@@ -75,6 +75,7 @@ public class DiplomaWebView {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                diplomaService.incrementPrintCounter(id);
             }
         }
     }

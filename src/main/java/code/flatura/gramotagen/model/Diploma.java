@@ -36,7 +36,7 @@ public class Diploma {
     private LocalDate dateModified;
 
     @Column(name = "printed_count")
-    private Integer printedCount;
+    private Integer printedCount = 0;
 
     // Info about competition
     @Column(name = "competition", nullable = false)
@@ -196,5 +196,12 @@ public class Diploma {
                 ", school='" + school + '\'' +
                 ", place='" + place + '\'' +
                 '}';
+    }
+
+    public Diploma incrementPrintedCount() {
+        System.out.println("Old printedCount = " + this.printedCount + ". Incrementing");
+        this.printedCount++;
+        System.out.println("Now it's " + this.printedCount);
+        return this;
     }
 }
