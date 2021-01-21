@@ -4,10 +4,26 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Gramotagen: find my diplomas</title>
+    <style>
+        #centerLayer {
+            position: absolute; /* Абсолютное позиционирование */
+            width: 300px;
+            height: 250px;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fc0; /* Цвет фона */
+            border: solid 1px black; /* Параметры рамки вокруг */
+            padding: 10px; /* Поля вокруг текста */
+            overflow: auto; /* Добавление полосы прокрутки */
+        }
+    </style>
 </head>
 <body>
-<h1>Find my diploma</h1>
-<div>
+<div id="centerLayer">
+    <h1>Find my diploma</h1>
     <form action="/my#" method="post">
         <div>Name</div>
         <div>
@@ -25,7 +41,7 @@
         <div>
             <input type="text" name="count" th:name="birthdate"/>
         </div>
-        <input type="submit" value="Find my diploma"></form>
+        <input type="submit" value="Найти мои грамоты"></form>
     </form>
 </div>
 </body>

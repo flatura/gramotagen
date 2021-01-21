@@ -28,14 +28,49 @@ public class DiplomaService {
     public List<DiplomaDto> getAll() {
         return diplomaRepository.findAll()
                 .stream()
-                .map(d -> new DiplomaDto(d.getId(), d.getType(), d.getPlace(), d.getPersonName(), d.getPersonSurname(), d.getCompetitionTitle(), d.getCompetitionDate()))
+                .map(d -> new DiplomaDto(
+                        d.getId(),
+                        d.getType(),
+                        d.getStatus(),
+                        d.getPersonName(),
+                        d.getPersonMiddleName(),
+                        d.getPersonSurname(),
+                        d.getCompetitionTheme(),
+                        d.getCompetitionDate(),
+                        d.getDecree()))
                 .collect(Collectors.toList());
     }
 
-    public List<DiplomaDto> findByPersonalInfo(String name, String middleName, String surname, LocalDate birthDate) {
+    public List<DiplomaDto> findByPersonalInfoWithBirthday(String name, String middleName, String surname, LocalDate birthDate) {
         return diplomaRepository.findAllByPersonNameAndPersonMiddleNameAndPersonSurnameAndPersonBirthDate(name, middleName, surname, birthDate)
                 .stream()
-                .map(d -> new DiplomaDto(d.getId(), d.getType(), d.getPlace(), d.getPersonName(), d.getPersonSurname(),d.getCompetitionTitle(),d.getCompetitionDate()))
+                .map(d -> new DiplomaDto(
+                        d.getId(),
+                        d.getType(),
+                        d.getStatus(),
+                        d.getPersonName(),
+                        d.getPersonMiddleName(),
+                        d.getPersonSurname(),
+                        d.getCompetitionTheme(),
+                        d.getCompetitionDate(),
+                        d.getDecree())
+        )
+                .collect(Collectors.toList());
+    }
+
+    public List<DiplomaDto> findByPersonalInfo(String name, String middleName, String surname) {
+        return diplomaRepository.findAllByPersonNameAndPersonMiddleNameAndPersonSurname(name, middleName, surname)
+                .stream()
+                .map(d -> new DiplomaDto(
+                        d.getId(),
+                        d.getType(),
+                        d.getStatus(),
+                        d.getPersonName(),
+                        d.getPersonMiddleName(),
+                        d.getPersonSurname(),
+                        d.getCompetitionTheme(),
+                        d.getCompetitionDate(),
+                        d.getDecree()))
                 .collect(Collectors.toList());
     }
 
@@ -43,7 +78,16 @@ public class DiplomaService {
         Optional<Diploma> optional = diplomaRepository.findById(id);
         if(optional.isPresent()) {
                 final Diploma d = optional.get();
-                return new DiplomaDto(d.getId(), d.getType(), d.getPlace(), d.getPersonName(), d.getPersonSurname(), d.getCompetitionTitle(), d.getCompetitionDate());
+                return new DiplomaDto(
+                        d.getId(),
+                        d.getType(),
+                        d.getStatus(),
+                        d.getPersonName(),
+                        d.getPersonMiddleName(),
+                        d.getPersonSurname(),
+                        d.getCompetitionTheme(),
+                        d.getCompetitionDate(),
+                        d.getDecree());
         }
         return null;
     }

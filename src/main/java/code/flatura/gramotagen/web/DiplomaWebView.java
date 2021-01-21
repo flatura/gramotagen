@@ -38,7 +38,7 @@ public class DiplomaWebView {
 
     @GetMapping("/")
     public String getByPersonalInfoForm() {
-        return "search_form.html";
+        return "search_form_simple.html";
     }
 
 
@@ -48,7 +48,21 @@ public class DiplomaWebView {
                                                  @RequestParam(name = "surname") String surName,
                                                  @RequestParam(name = "birthdate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthDate,
                                                  Map<String, Object> model) {
-        List<DiplomaDto> result = diplomaService.findByPersonalInfo(name, middleName, surName, birthDate);
+        List<DiplomaDto> result = diplomaService.findByPersonalInfoWithBirthday(name, middleName, surName, birthDate);
+        if (result.isEmpty()) {
+            return new ModelAndView("search_form");
+        } else model.put("diploma_list", result);
+        model.put("name", name);
+        model.put("middle_name", middleName);
+        return new ModelAndView("search_result", model);
+    }
+
+    @PostMapping("/my-simple")
+    public ModelAndView listByPersonalInfoSubmit(@RequestParam(name = "name") String name,
+                                                 @RequestParam(name = "middlename") String middleName,
+                                                 @RequestParam(name = "surname") String surName,
+                                                 Map<String, Object> model) {
+        List<DiplomaDto> result = diplomaService.findByPersonalInfo(name, middleName, surName);
         if (result.isEmpty()) {
             return new ModelAndView("search_form");
         } else model.put("diploma_list", result);

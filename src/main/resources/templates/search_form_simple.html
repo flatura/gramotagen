@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Gramotagen: list of all diploma</title>
+    <title>Gramotagen: Поиск моих грамот</title>
     <style>
         #centerLayer {
             position: absolute; /* Абсолютное позиционирование */
@@ -23,29 +23,22 @@
 </head>
 <body>
 <div id="centerLayer">
-    <h1>List of all diploma</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>Type</th>
-            <th>Place</th>
-            <th>Competition</th>
-            <th>Date</th>
-            <th>Name</th>
-            <th>Surname</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="entry : ${diploma_list}">
-            <td th:text="${entry.type}"></td>
-            <td th:text="${entry.status}"></td>
-            <td th:text="${entry.competitionTitle}"></td>
-            <td th:text="${entry.competitionDate}"></td>
-            <td th:text="${entry.personName}"></td>
-            <td th:text="${entry.personSurname}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <h1>Поиск моих грамот</h1>
+    <form action="/my-simple#" method="post">
+        <div>Name</div>
+        <div>
+            <input type="text" name="name" th:name="name"/>
+        </div>
+        <div>Middle name</div>
+        <div>
+            <input type="text" name="middlename" th:name="middlename"/>
+        </div>
+        <div>Surname</div>
+        <div>
+            <input type="text" name="surname" th:name="surname"/>
+        </div>
+        <input type="submit" value="Найти мои грамоты"></form>
+    </form>
 </div>
 </body>
 </html>

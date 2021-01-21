@@ -4,24 +4,40 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Gramotagen: find my diplomas</title>
+    <style>
+        #centerLayer {
+            position: absolute; /* Абсолютное позиционирование */
+            width: 300px;
+            height: 250px;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fc0; /* Цвет фона */
+            border: solid 1px black; /* Параметры рамки вокруг */
+            padding: 10px; /* Поля вокруг текста */
+            overflow: auto; /* Добавление полосы прокрутки */
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${name+' '+middle_name+', there is your diploma:'}"></h1>
-<div>
+<div id="centerLayer">
+    <h1 th:text="${name+' '+middle_name+', there is your diploma:'}"></h1>
     <table>
         <thead>
         <tr>
-            <th>Type</th>
-            <th>Place</th>
-            <th>Competition</th>
-            <th>Date</th>
-            <th>Print</th>
+            <th>Тип награды</th>
+            <th>Статус участника</th>
+            <th>Соревнование</th>
+            <th>Дата проведения</th>
+            <th>Печать</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="entry : ${diploma_list}">
             <td th:text="${entry.type}"></td>
-            <td th:text="${entry.place}"></td>
+            <td th:text="${entry.status}"></td>
             <td th:text="${entry.competitionTitle}"></td>
             <td th:text="${entry.competitionDate}"></td>
             <td>

@@ -18,4 +18,7 @@ public interface DiplomaRepository extends JpaRepository<Diploma, Integer> {
 
     @Query("SELECT d FROM Diploma d WHERE d.id = :id")
     Optional<Diploma> findById(UUID id);
+
+    @Query
+    List<Diploma> findAllByPersonNameAndPersonMiddleNameAndPersonSurname(String name, String middleName, String surName);
 }
