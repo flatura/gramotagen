@@ -3,12 +3,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Gramotagen: find my diplomas</title>
+    <title>Gramotagen: Результаты поиска грамот</title>
     <style>
         #centerLayer {
             position: absolute; /* Абсолютное позиционирование */
-            width: 300px;
-            height: 250px;
+            width: 500px;
+            height: 650px;
             margin: auto;
             top: 0;
             bottom: 0;
@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="centerLayer">
-    <h1 th:text="${name+' '+middle_name+', there is your diploma:'}"></h1>
+    <h1 th:text="${name+' '+middle_name+', вот что нашлось:'}"></h1>
     <table>
         <thead>
         <tr>
@@ -42,7 +42,7 @@
             <td th:text="${entry.competitionDate}"></td>
             <td>
                 <a href="/my"
-                   th:href="@{/my(id=${entry.id},name=${entry.getPersonName()},surname=${entry.getPersonSurname()})}">Download</a>
+                   th:href="@{/my(id=${entry.id},name=${entry.getPersonName()},surname=${entry.getPersonSurname()})}">Распечатать</a>
             </td>
         </tr>
         </tbody>

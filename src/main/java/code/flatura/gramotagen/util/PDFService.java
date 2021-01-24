@@ -18,23 +18,23 @@ public class PDFService {
     private static final String GRAMOTA_A5_LANDSCAPE_JPG = "./src/main/resources/default.jpg";
     // Markup
     //private static final int GAP_BEFORE_TYPE = 1;
-    private static final int GAP_BEFORE_TYPE = 0;
+    private static final int GAP_BEFORE_TYPE = 12;
     //private static final int GAP_BEFORE_AWARDED = 4;
-    private static final int GAP_BEFORE_AWARDED = 2;
+    private static final int GAP_BEFORE_AWARDED = 9;
     private static final int GAP_BEFORE_PERSONAL_INFO = 0;
     private static final int GAP_BEFORE_COMPETITION_INFO = 0;
     // Sizes
-    private static final int HEADER1_SIZE = 30;
-    private static final int HEADER2_SIZE = 30;
-    private static final int SMALL_TEXT_SIZE = 10;
-    private static final int TEXT_SIZE = 15;
+    private static final int SIZE_HEADER1 = 30;
+    private static final int SIZE_HEADER2 = 30;
+    private static final int SIZE_SMALL_TEXT = 10;
+    private static final int SIZE_TEXT = 15;
 
     public static void generate(DiplomaDto diplomaDto, ServletOutputStream outputStream) {
         try {
             Document document = new Document();
             PdfWriter writer = PdfWriter.getInstance(document, outputStream);
             document.setPageSize(new Rectangle(600,420));
-            document.setMargins(22,32,12,22);
+            document.setMargins(65,65,12,22);
             document.open();
 
             addMetadata(diplomaDto, document);
@@ -55,17 +55,17 @@ public class PDFService {
         BaseFont header2BaseFont = BaseFont.createFont(PHILLIPP_SCRIPT_TTF, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
         BaseFont text1BaseFont = BaseFont.createFont(PHILLIPP_SCRIPT_TTF, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
-        Font header1Font = new Font(header1BaseFont,HEADER1_SIZE, Font.NORMAL);
-        Font header2font = new Font(header2BaseFont,HEADER2_SIZE, Font.NORMAL);
-        Font text1Font = new Font(text1BaseFont,TEXT_SIZE, Font.NORMAL);
-        Font smallTextFont = new Font(text1BaseFont,SMALL_TEXT_SIZE, Font.NORMAL);
+        Font header1Font = new Font(header1BaseFont, SIZE_HEADER1, Font.NORMAL);
+        Font header2font = new Font(header2BaseFont, SIZE_HEADER2, Font.NORMAL);
+        Font text1Font = new Font(text1BaseFont, SIZE_TEXT, Font.NORMAL);
+        Font smallTextFont = new Font(text1BaseFont, SIZE_SMALL_TEXT, Font.NORMAL);
         //Font header1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 24, BaseColor.BLACK);
 
         //  Adding diploma type
-        addEmptyLine(document, GAP_BEFORE_TYPE);
+        addEmptyLine(document, GAP_BEFORE_TYPE); // Похоже, что вообще не учитывается
         Paragraph paragraph;
         //paragraph = new Paragraph(diplomaDto.getType(), header1Font);
-        paragraph = new Paragraph(" ", header1Font);
+        paragraph = new Paragraph(" ", smallTextFont);
         paragraph.setAlignment(Element.ALIGN_CENTER);
         document.add(paragraph);
 
@@ -94,6 +94,7 @@ public class PDFService {
         paragraph.setAlignment(Element.ALIGN_CENTER);
         document.add(paragraph);
 
+        addEmptyLine(document, 1);
         paragraph = new Paragraph(diplomaDto.getDecree(), smallTextFont);
         paragraph.setAlignment(Element.ALIGN_RIGHT);
         document.add(paragraph);

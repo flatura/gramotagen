@@ -23,19 +23,19 @@
 </head>
 <body>
 <div id="centerLayer">
-    <h1>Find my diploma</h1>
+    <h1>Поиск грамот</h1>
     <form action="/my#" method="post">
-        <div>Name</div>
+        <div>Фамилия</div>
+        <div>
+            <input type="text" name="surname" th:name="surname"/>
+        </div>
+        <div>Имя</div>
         <div>
             <input type="text" name="name" th:name="name"/>
         </div>
-        <div>Middle name</div>
+        <div>Отчество</div>
         <div>
             <input type="text" name="middlename" th:name="middlename"/>
-        </div>
-        <div>Surname</div>
-        <div>
-            <input type="text" name="surname" th:name="surname"/>
         </div>
         <div>Дата рождения в формате yyyy-mm-dd</div>
         <div>

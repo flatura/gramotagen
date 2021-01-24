@@ -25,17 +25,17 @@
 <div id="centerLayer">
     <h1>Поиск моих грамот</h1>
     <form action="/my-simple#" method="post">
-        <div>Name</div>
+        <div>Фамилия</div>
+        <div>
+            <input type="text" name="surname" th:name="surname"/>
+        </div>
+        <div>Имя</div>
         <div>
             <input type="text" name="name" th:name="name"/>
         </div>
-        <div>Middle name</div>
+        <div>Отчество</div>
         <div>
             <input type="text" name="middlename" th:name="middlename"/>
-        </div>
-        <div>Surname</div>
-        <div>
-            <input type="text" name="surname" th:name="surname"/>
         </div>
         <input type="submit" value="Найти мои грамоты"></form>
     </form>
