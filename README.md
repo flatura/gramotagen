@@ -1,7 +1,7 @@
 # Gramotagen v0.90
-#####by Dmitry 'flatura' Morozov 2020-2021
+##### by Dmitry 'flatura' Morozov 2020-2021
 
-###Getting started
+### Getting started
 Gramotagen is an web application made to generate PDF-diploma files for pupil's request by validating its legit through the DB.   
 
 ### Reference Documentation
