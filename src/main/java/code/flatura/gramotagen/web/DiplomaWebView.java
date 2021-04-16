@@ -94,6 +94,31 @@ public class DiplomaWebView {
         }
     }
 
+    // Форма добавления новой грамоты
+    @GetMapping("/add")
+    public String addDiplomaForm() {return "add_new_diploma.html";}
+
+    // Добавление грамот в БД с предварительной проверкой кода +79261396438
+    @PostMapping("/add")
+    public ModelAndView addDiplomaFormSubmit(
+                                             @RequestParam(name = "competition_short") String competitionThemeShort,
+                                             @RequestParam(name = "competition") String competitionTheme,
+                                             @RequestParam(name = "issue_date") String issueDate,
+                                             @RequestParam(name = "type") String type,
+                                             @RequestParam(name = "discipline") String discipline,
+                                             @RequestParam(name = "name") String name,
+                                             @RequestParam(name = "middlename") String middleName,
+                                             @RequestParam(name = "surname") String surName,
+                                             @RequestParam(name = "status") String status,
+                                             @RequestParam(name = "pass") String pass,
+                                             Map<String, Object> model) {
+        if(pass.equals("+79261396438")) {
+            diplomaService.addDiploma(competitionThemeShort, competitionTheme, issueDate, type, discipline, name, middleName, surName, status);
+        }
+
+        return new ModelAndView("search_form_simple.html");
+    }
+
     @GetMapping("/demo")
     public void getDemoPDF(HttpServletResponse response) {
         Document document = new Document();
@@ -102,7 +127,7 @@ public class DiplomaWebView {
             PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
             Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-            Chunk chunk = new Chunk("Hello World", font);
+            Chunk chunk = new Chunk("Demo PDF generator", font);
             document.add(chunk);
             document.close();
 
@@ -115,5 +140,4 @@ public class DiplomaWebView {
             throw new RuntimeException("iText document error");
         }
     }
-
 }

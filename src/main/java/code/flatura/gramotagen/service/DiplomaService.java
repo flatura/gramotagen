@@ -97,4 +97,48 @@ public class DiplomaService {
         // Ищем запись в БД, если существует, то запускаем инкремент счетчика и сохраняем
         diplomaRepository.findById(id).ifPresent(d -> diplomaRepository.save(d.incrementPrintedCount()));
     }
+
+    public int addDiploma(
+            String competitionThemeShort,
+            String competitionTheme,
+            String issueDateStr,
+            String type,
+            String discipline,
+            String name,
+            String middleName,
+            String surName,
+            String status) {
+        LocalDate issueDate = null;
+        try {
+            issueDate = LocalDate.parse(issueDateStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 1;
+        }
+        Diploma diploma = new Diploma("",
+                0,
+                type,
+                competitionThemeShort,
+                competitionTheme,
+                discipline,
+                null,
+                name,
+                middleName,
+                surName,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                status,
+                issueDate,
+                LocalDate.now(),
+                null,
+                0,
+                null,
+                "default");
+        diplomaRepository.save(diploma);
+        return 0;
+    }
 }
