@@ -1,10 +1,14 @@
 # Gramotagen v0.90
 ##### by Dmitry 'flatura' Morozov 2020-2021
 
-### Getting started
-Gramotagen is an web application made to generate PDF-diploma files for pupil's request by validating its legit through the DB.   
+Gramotagen is a web-service application for generating PDF-diploma files by pupil's request with validating its legit through the DB.   
+Current home-endpoint leads to form with birthday validation excluded 'cause of customer told so.
+
+#### Stack
+Spring Boot 2.3.1, Thymeleaf 2.3.1, Bootstrap 4.3.1
 
 ### Reference Documentation
+
 Simple backend created using Spring Boot 2.3.1 with iTextPDF 5.5.7 framework
 Frontend is provided by Thymeleaf through these endpoints:
 
