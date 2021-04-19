@@ -5,7 +5,7 @@ Gramotagen is a web-service application for generating PDF-diploma files by pupi
 Current home-endpoint leads to form with birthday validation excluded 'cause of customer told so.
 
 #### Stack
-Spring Boot 2.3.1, Thymeleaf 2.3.1, Bootstrap 4.3.1
+Spring Boot 2.3.1, PostgreSQL 13, Thymeleaf 2.3.1, Bootstrap 4.3.1
 
 ### Reference Documentation
 
