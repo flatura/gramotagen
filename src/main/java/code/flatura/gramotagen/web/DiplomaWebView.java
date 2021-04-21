@@ -41,7 +41,7 @@ public class DiplomaWebView {
         return "search_form_simple.html";
     }
 
-
+    // Выдача грамот с проверкой ДР
     @PostMapping("/my")
     public ModelAndView listByPersonalInfoSubmit(@RequestParam(name = "name") String name,
                                                  @RequestParam(name = "middlename") String middleName,
@@ -57,9 +57,10 @@ public class DiplomaWebView {
         return new ModelAndView("search_result", model);
     }
 
+    // Без ДР
     @PostMapping("/my-simple")
     public ModelAndView listByPersonalInfoSubmit(@RequestParam(name = "name") String name,
-                                                 @RequestParam(name = "middlename") String middleName,
+                                                 @RequestParam(name = "middle_name") String middleName,
                                                  @RequestParam(name = "surname") String surName,
                                                  Map<String, Object> model) {
         List<DiplomaDto> result = diplomaService.findByPersonalInfo(name, middleName, surName);

@@ -1,37 +1,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
     <title>Gramotagen: Результаты поиска грамот</title>
-    <style>
-        #centerLayer {
-            position: absolute; /* Абсолютное позиционирование */
-            width: 500px;
-            height: 650px;
-            margin: auto;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fc0; /* Цвет фона */
-            border: solid 1px black; /* Параметры рамки вокруг */
-            padding: 10px; /* Поля вокруг текста */
-            overflow: auto; /* Добавление полосы прокрутки */
-        }
-    </style>
 </head>
 <body>
-<div id="centerLayer">
+<div th:insert="header"></div>
+<div class="container">
     <h1 th:text="${name+' '+middle_name+', вот что нашлось:'}"></h1>
-    <table>
+    <table class="table">
         <thead>
         <tr>
-            <th>Тип награды</th>
-            <th>Статус участника</th>
-            <th>Соревнование</th>
-            <th>Дата проведения</th>
-            <th>Печать</th>
+            <th scope="col">Тип награды</th>
+            <th scope="col">Статус участника</th>
+            <th scope="col">Соревнование</th>
+            <th scope="col">Дата проведения</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -48,5 +36,6 @@
         </tbody>
     </table>
 </div>
+<div th:insert="footer"></div>
 </body>
 </html>

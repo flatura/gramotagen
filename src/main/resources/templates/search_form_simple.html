@@ -1,44 +1,36 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Gramotagen: Поиск моих грамот</title>
-    <style>
-        #centerLayer {
-            position: absolute; /* Абсолютное позиционирование */
-            width: 300px;
-            height: 250px;
-            margin: auto;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fc0; /* Цвет фона */
-            border: solid 1px black; /* Параметры рамки вокруг */
-            padding: 10px; /* Поля вокруг текста */
-            overflow: auto; /* Добавление полосы прокрутки */
-        }
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <title>Gramotagen: Поиск грамот в моей школе</title>
 </head>
 <body>
-<div id="centerLayer">
-    <h1>Поиск моих грамот</h1>
-    <form action="/my-simple#" method="post">
-        <div>Фамилия</div>
-        <div>
-            <input type="text" name="surname" th:name="surname"/>
-        </div>
-        <div>Имя</div>
-        <div>
-            <input type="text" name="name" th:name="name"/>
-        </div>
-        <div>Отчество</div>
-        <div>
-            <input type="text" name="middlename" th:name="middlename"/>
-        </div>
-        <input type="submit" value="Найти мои грамоты"></form>
-    </form>
+<div th:insert="header"></div>
+<div class="container">
+    <h1>Найти мои наградительные документы</h1>
+    <div class="container-md">
+        <form action="/my-simple#" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="surname">Фамилия</label>
+                <input type="text" class="form-control" name="surname" id="surname" th:name="surname"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="name">Имя</label>
+                <input type="text" class="form-control" name="name" id="name" th:name="name"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="middle_name">Отчество</label>
+                <input type="text" class="form-control" name="middle_name" id="middle_name" th:name="middle_name"/>
+            </div>
+            <input type="submit" value="Найти мои грамоты">
+        </form>
+    </div>
 </div>
+<div th:insert="footer"></div>
 </body>
+<script th:href="@{/webjars/jquery/3.4.0/jquery.min.js} " type=""></script>
 </html>

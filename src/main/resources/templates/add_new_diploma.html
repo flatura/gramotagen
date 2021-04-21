@@ -1,76 +1,66 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
     <title>Gramotagen: Добавить новый документ</title>
 </head>
 <body>
-<div>
+<div th:insert="header"></div>
+<div class="container">
     <h1>Добавить новый документ</h1>
-    <form action="/add" method="post">
-        <div>Краткое наименование соревнования (латиница максимум 30 символов)</div>
-        <div>
-            <label>
-                <input type="text" name="competition_short" th:name="competition_short"/>
-            </label>
-        </div>
-        <div>Полное наименование соревнования (кириллица, максимум 85 символов) ПЕЧАТАЕТСЯ</div>
-        <div>
-            <label>
-                <input type="text" name="competition" th:name="competition"/>
-            </label>
-        </div>
-        <div>Дата выдачи (ГГГГ-ММ-ДД)</div>
-        <div>
-            <label>
-                <input type="text" name="issue_date" th:name="issue_date"/>
-            </label>
-        </div>
-        <div>Тип награды (грамота, благодарственное письмо)</div>
-        <div>
-            <label>
-                <input type="text" name="type" th:name="type"/>
-            </label>
-        </div>
-        <div>Предмет ПЕЧАТАЕТСЯ</div>
-        <div>
-            <label>
-                <input type="text" name="discipline" th:name="discipline"/>
-            </label>
-        </div>
-        <div>Фамилия получателя  ПЕЧАТАЕТСЯ</div>
-        <div>
-            <label>
-                <input type="text" name="surname" th:name="surname"/>
-            </label>
-        </div>
-        <div>Имя получателя ПЕЧАТАЕТСЯ</div>
-        <div>
-            <label>
-                <input type="text" name="name" th:name="name"/>
-            </label>
-        </div>
-        <div>Отчество получателя ПЕЧАТАЕТСЯ</div>
-        <div>
-            <label>
-                <input type="text" name="middlename" th:name="middlename"/>
-            </label>
-        </div>
-        <div>Победитель, призер или участник ПЕЧАТАЕТСЯ</div>
-        <div>
-            <label>
-                <input type="text" name="status" th:name="status"/>
-            </label>
-        </div>
-        <div>Пароль для добавления нового документа</div>
-        <div>
-            <label>
-                <input type="text" name="pass" th:name="pass"/>
-            </label>
-        </div>
-        <input type="submit" value="Доавить новый документ"></form>
-    </form>
+    <div class="container-md">
+        <form action="/add" method="post">
+            <div class="mb-2">
+                <label class="form-label" for="competition_short">Краткое наименование соревнования (латиница максимум
+                    30 символов)</label>
+                <input type="text" class="form-control" name="competition_short" id="competition_short"
+                       th:name="competition_short"/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="competition">Полное наименование соревнования (кириллица, максимум 85
+                    символов) ПЕЧАТАЕТСЯ</label>
+                <input type="text" class="form-control" name="competition" id="competition" th:name="competition">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="issue_date">Дата выдачи (ГГГГ-ММ-ДД)</label>
+                <input type="text" class="form-control" name="issue_date" id="issue_date" th:name="issue_date">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="type">Тип награды (грамота, благодарственное письмо)</label>
+                <input type="text" class="form-control" name="type" id="type" th:name="type">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="discipline">Предмет ПЕЧАТАЕТСЯ</label>
+                <input type="text" class="form-control" name="discipline" id="discipline" th:name="discipline">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="surname">Фамилия получателя ПЕЧАТАЕТСЯ</label>
+                <input type="text" class="form-control" name="surname" id="surname" th:name="surname">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="name">Имя получателя ПЕЧАТАЕТСЯ</label>
+                <input type="text" class="form-control" name="name" id="name" th:name="name">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="middlename">Отчество получателя ПЕЧАТАЕТСЯ</label>
+                <input type="text" class="form-control" name="middlename" id="middlename" th:name="middlename">
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="status">Победитель, призер или участник ПЕЧАТАЕТСЯ</label>
+                <input type="text" class="form-control" name="status" id="status" th:name="status">
+            </div>
+            <div class="mb-2">
+                <label for="pass" class="form-label">Пароль для добавления нового документа</label>
+                <input type="password" class="form-control" name="pass" id="pass" th:name="pass">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Доавить новый документ"/>
+        </form>
+    </div>
 </div>
+<div th:insert="footer"></div>
 </body>
+<script th:href="@{/webjars/jquery/3.4.0/jquery.min.js} " type=""></script>
 </html>
